@@ -58,5 +58,5 @@ export declare function gameMachine(value: BoardSide): import("xstate").StateMac
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "" | "xstate.after(50)#gameMachine.gameStarted.checkingMoves" | "xstate.init" | "xstate.after(50)#gameMachine.firstRandom" | "xstate.after(10)#gameMachine.gameStarted.moving" | "xstate.after(10)#gameMachine.gameStarted.assignMoves" | "xstate.after(10)#gameMachine.gameStarted.assigningScore" | "xstate.after(10)#gameMachine.gameStarted.randomNumber">;
+    }, "" | "xstate.after(50)#gameMachine.gameStarted.checkingMoves" | "xstate.after(50)#gameMachine.firstRandom" | "xstate.after(10)#gameMachine.gameStarted.moving" | "xstate.after(10)#gameMachine.gameStarted.assignMoves" | "xstate.after(10)#gameMachine.gameStarted.randomNumber" | "xstate.after(10)#gameMachine.gameStarted.assigningScore" | "xstate.init">;
 }>;
