@@ -1,8 +1,8 @@
 // import { assign } from '@xstate/immer';
 import { assign } from '@xstate/immer';
-import { Board } from '../../context';
-import { TContext } from '../../context/context';
-import { getEmptyPlaces } from './getEmptyPlaces';
+import { Board } from '../context';
+import { TContext } from '../context/context';
+import { getEmptyPlaces } from './helpers/getEmptyPlaces';
 
 export function nextNumber() {
   const rand = Math.random();

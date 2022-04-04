@@ -6,8 +6,17 @@
       "script": "tsc-w",
       "problemMatcher": [],
       "isBackground": true,
-      "label": "pnpm: tsc",
-      "detail": "tsc -w",
+      "label": "pnpm:tsc-w",
+      "detail": "Watch all *.ts files",
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "type": "npm",
+      "script": "tsc-r",
+      "problemMatcher": [],
+      "isBackground": true,
+      "label": "pnpm:tsc-r",
+      "detail": "Rinit lib",
       "runOptions": { "runOn": "folderOpen" }
     }
   ]
