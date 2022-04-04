@@ -22,6 +22,8 @@ export function _moveUp(boardSide: BoardSide, board: Board): Board {
   return _board;
 }
 
-export const moveDown = assign<TContext, never>(ctx => {
-  ctx._tempBoards.down = _moveUp(ctx.boardSide, ctx.board);
+export const moveUpTemp = assign<TContext, never>(ctx => {
+  const next = _moveUp(ctx.boardSide, ctx.board);
+  (ctx._tempBoards as any).up = next;
+  (ctx._tempBoards as any).next = next;
 });

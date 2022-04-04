@@ -1,4 +1,4 @@
-import { number, object } from 'zod';
+import { literal, number, object, union } from 'zod';
 import { boardSchema } from './board';
 import { BoardSide } from './boardSide';
 import { inferF } from './types';
@@ -8,14 +8,16 @@ export function contextSchema(boardSide: BoardSide) {
   return object({
     board,
     _tempBoards: object({
-      left: board,
-      right: board,
-      up: board,
-      down: board,
-    }),
+      left: board.optional(),
+      right: board.optional(),
+      up: board.optional(),
+      down: board.optional(),
+      next: board.optional(),
+    }).optional(),
+
     boardSide: number(),
     moves: number(),
-    statistics: number(),
+    statistics: object({}).optional(),
     score: number(),
     iterator: number(),
   });

@@ -1,7 +1,7 @@
 import { ttest } from '@bemedev/test';
-import { getEmptyPlaces } from './getEmptyPlaces';
+import { getEmptyPlaces } from './helpers/getEmptyPlaces';
+import { cards1 } from './helpers/setupTests';
 import { _addRandomNumber } from './random';
-import { cards1 } from './setupTests';
 
 describe('addRandomNumber', () => {
   ttest({

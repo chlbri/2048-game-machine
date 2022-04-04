@@ -14,6 +14,8 @@ export function _moveRight(boardSide: BoardSide, board: Board): Board {
   return _board;
 }
 
-export const moveDown = assign<TContext, never>(ctx => {
-  ctx._tempBoards.down = _moveRight(ctx.boardSide, ctx.board);
+export const moveRightTemp = assign<TContext, never>(ctx => {
+  const next = _moveRight(ctx.boardSide, ctx.board);
+  (ctx._tempBoards as any).right = next;
+  (ctx._tempBoards as any).next = next;
 });

@@ -3,6 +3,7 @@
 export interface Typegen0 {
   '@@xstate/typegen': true;
   eventsCausingActions: {
+    createBoard: 'START';
     moveUpTemp: 'MOVE.UP';
     moveDownTemp: 'MOVE.DOWN';
     moveLeftTemp: 'MOVE.LEFT';
@@ -14,7 +15,6 @@ export interface Typegen0 {
       | 'RINIT_GAME'
       | 'xstate.after(50)#gameMachine.firstRandom'
       | 'xstate.after(10)#gameMachine.gameStarted.moving';
-    deleteTempBoard: 'xstate.after(50)#gameMachine.gameStarted.checkingMoves';
     assignScore: 'xstate.after(10)#gameMachine.gameStarted.assignMoves';
     assignPossibleMoves: 'xstate.after(10)#gameMachine.gameStarted.assigningScore';
     addMoves: 'xstate.after(10)#gameMachine.gameStarted.randomNumber';
@@ -44,21 +44,9 @@ export interface Typegen0 {
   };
   invokeSrcNameMap: {};
   missingImplementations: {
-    actions:
-      | 'moveUpTemp'
-      | 'moveDownTemp'
-      | 'moveLeftTemp'
-      | 'moveRightTemp'
-      | 'move'
-      | 'inc'
-      | 'addRandomNumber'
-      | 'deleteTempBoard'
-      | 'assignScore'
-      | 'assignPossibleMoves'
-      | 'addMoves'
-      | 'stopGame';
+    actions: never;
     services: never;
-    guards: 'canMove' | 'canMoveAny';
+    guards: never;
     delays: never;
   };
   eventsCausingServices: {};
