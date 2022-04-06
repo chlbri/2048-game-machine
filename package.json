@@ -4,8 +4,8 @@
   "description": "Game engine for 2048",
   "author": "chlbri <bri_lvi@icloud.com>",
   "license": "MIT",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "tsc-w": "tsc -w",

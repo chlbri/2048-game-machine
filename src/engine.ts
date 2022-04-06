@@ -20,9 +20,9 @@ import { boardSideSchema, TContext } from './context';
 import { TEvent } from './events';
 import { canMove, canMoveAny } from './guards';
 
-export const gameMachine = createMachine(
+export const engine = createMachine(
   {
-    id: 'gameMachine',
+    id: 'engine',
     context: {
       board: [],
       boardSide: boardSideSchema.parse(4),
@@ -38,7 +38,7 @@ export const gameMachine = createMachine(
       },
     },
 
-    tsTypes: {} as import('./machine.typegen').Typegen0,
+    tsTypes: {} as import('./engine.typegen').Typegen0,
     schema: {
       context: {} as TContext,
       events: {} as TEvent,
