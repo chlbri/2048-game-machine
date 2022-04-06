@@ -15,9 +15,9 @@ export interface Typegen0 {
       | 'xstate.after(10)#engine.boardCreation.randomNumbers.first'
       | 'xstate.after(10)#engine.started.moving';
     startGame: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';
-    updateGame: 'xstate.after(50)#starting' | '';
     score: 'xstate.after(10)#engine.started.assignMoves';
     assignPossibleMoves: 'xstate.after(10)#engine.started.assigningScore';
+    updateGame: '';
     addMoves: 'xstate.after(10)#engine.started.randomNumber';
     stopGame: '';
   };
@@ -40,11 +40,10 @@ export interface Typegen0 {
     'xstate.after(10)#engine.started.randomNumber': {
       type: 'xstate.after(10)#engine.started.randomNumber';
     };
-    'xstate.after(50)#starting': { type: 'xstate.after(50)#starting' };
-    '': { type: '' };
     'xstate.after(10)#engine.started.assigningScore': {
       type: 'xstate.after(10)#engine.started.assigningScore';
     };
+    '': { type: '' };
     'xstate.init': { type: 'xstate.init' };
   };
   invokeSrcNameMap: {};

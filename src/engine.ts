@@ -121,7 +121,6 @@ export const engine = createMachine(
       started: {
         initial: 'assigningPossibleMoves',
         id: 'started',
-        entry: ['updateGame'],
         description: 'Vous pouvez jouer',
         states: {
           fixed: {
