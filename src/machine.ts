@@ -14,7 +14,7 @@ import {
   score,
   startGame,
   stopGame,
-  updateGame
+  updateGame,
 } from './actions';
 import { boardSideSchema, TContext } from './context';
 import { TEvent } from './events';
@@ -29,6 +29,13 @@ export const gameMachine = createMachine(
       iterator: 0,
       moves: 0,
       score: 0,
+      _tempBoards: {
+        down: [],
+        up: [],
+        left: [],
+        right: [],
+        next: [],
+      },
     },
 
     tsTypes: {} as import('./machine.typegen').Typegen0,
@@ -83,7 +90,7 @@ export const gameMachine = createMachine(
                   },
                 },
               },
-              
+
               second: {
                 entry: 'addRandomNumber',
                 exit: ['inc'],

@@ -8,12 +8,12 @@ export function contextSchema(boardSide: BoardSide) {
   return object({
     board,
     _tempBoards: object({
-      left: board.optional(),
-      right: board.optional(),
-      up: board.optional(),
-      down: board.optional(),
-      next: board.optional(),
-    }).optional(),
+      left: board,
+      right: board,
+      up: board,
+      down: board,
+      next: board,
+    }),
 
     boardSide: boardSideSchema,
     moves: number(),
