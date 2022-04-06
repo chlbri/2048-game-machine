@@ -1,40 +1,46 @@
 export interface Typegen0 {
     '@@xstate/typegen': true;
     eventsCausingActions: {
-        createBoard: 'START';
+        changeBoardSide: 'CHANGE_BOARDSIDE';
         moveUpTemp: 'MOVE.UP';
         moveDownTemp: 'MOVE.DOWN';
         moveLeftTemp: 'MOVE.LEFT';
         moveRightTemp: 'MOVE.RIGHT';
-        move: 'xstate.after(50)#gameMachine.gameStarted.checkingMoves';
+        move: 'xstate.after(20)#gameMachine.started.checkingMoves';
         inc: 'xstate.init';
-        addRandomNumber: 'START' | 'RINIT_GAME' | 'xstate.after(50)#gameMachine.firstRandom' | 'xstate.after(10)#gameMachine.gameStarted.moving';
-        assignScore: 'xstate.after(10)#gameMachine.gameStarted.assignMoves';
-        assignPossibleMoves: 'xstate.after(10)#gameMachine.gameStarted.assigningScore';
-        addMoves: 'xstate.after(10)#gameMachine.gameStarted.randomNumber';
+        createBoard: 'xstate.init';
+        addRandomNumber: 'xstate.after(10)#gameMachine.boardCreation.randomNumbers.first' | 'xstate.after(10)#gameMachine.started.moving';
+        startGame: 'xstate.after(10)#gameMachine.boardCreation.randomNumbers.second';
+        updateGame: 'xstate.after(20)#gameMachine.started.checkingMoves' | '';
+        score: 'xstate.after(10)#gameMachine.started.assignMoves';
+        assignPossibleMoves: 'xstate.after(10)#gameMachine.started.assigningScore';
+        addMoves: 'xstate.after(10)#gameMachine.started.randomNumber';
         stopGame: '';
     };
     internalEvents: {
-        'xstate.after(50)#gameMachine.gameStarted.checkingMoves': {
-            type: 'xstate.after(50)#gameMachine.gameStarted.checkingMoves';
+        'xstate.after(20)#gameMachine.started.checkingMoves': {
+            type: 'xstate.after(20)#gameMachine.started.checkingMoves';
         };
-        'xstate.after(50)#gameMachine.firstRandom': {
-            type: 'xstate.after(50)#gameMachine.firstRandom';
+        'xstate.after(10)#gameMachine.boardCreation.randomNumbers.first': {
+            type: 'xstate.after(10)#gameMachine.boardCreation.randomNumbers.first';
         };
-        'xstate.after(10)#gameMachine.gameStarted.moving': {
-            type: 'xstate.after(10)#gameMachine.gameStarted.moving';
+        'xstate.after(10)#gameMachine.started.moving': {
+            type: 'xstate.after(10)#gameMachine.started.moving';
         };
-        'xstate.after(10)#gameMachine.gameStarted.assignMoves': {
-            type: 'xstate.after(10)#gameMachine.gameStarted.assignMoves';
+        'xstate.after(10)#gameMachine.boardCreation.randomNumbers.second': {
+            type: 'xstate.after(10)#gameMachine.boardCreation.randomNumbers.second';
         };
-        'xstate.after(10)#gameMachine.gameStarted.randomNumber': {
-            type: 'xstate.after(10)#gameMachine.gameStarted.randomNumber';
+        'xstate.after(10)#gameMachine.started.assignMoves': {
+            type: 'xstate.after(10)#gameMachine.started.assignMoves';
         };
-        'xstate.after(10)#gameMachine.gameStarted.assigningScore': {
-            type: 'xstate.after(10)#gameMachine.gameStarted.assigningScore';
+        'xstate.after(10)#gameMachine.started.randomNumber': {
+            type: 'xstate.after(10)#gameMachine.started.randomNumber';
         };
         '': {
             type: '';
+        };
+        'xstate.after(10)#gameMachine.started.assigningScore': {
+            type: 'xstate.after(10)#gameMachine.started.assigningScore';
         };
         'xstate.init': {
             type: 'xstate.init';
@@ -49,12 +55,15 @@ export interface Typegen0 {
     };
     eventsCausingServices: {};
     eventsCausingGuards: {
-        canMove: 'xstate.after(50)#gameMachine.gameStarted.checkingMoves';
+        canMove: 'xstate.after(20)#gameMachine.started.checkingMoves';
         canMoveAny: '';
     };
     eventsCausingDelays: {};
-    matchesStates: 'idle' | 'firstRandom' | 'secondRandom' | 'gameStarted' | 'gameStarted.fixed' | 'gameStarted.checkingMoves' | 'gameStarted.moving' | 'gameStarted.assigningScore' | 'gameStarted.assigningPossibleMoves' | 'gameStarted.randomNumber' | 'gameStarted.assignMoves' | 'gameOver' | {
-        gameStarted?: 'fixed' | 'checkingMoves' | 'moving' | 'assigningScore' | 'assigningPossibleMoves' | 'randomNumber' | 'assignMoves';
+    matchesStates: 'idle' | 'boardCreation' | 'boardCreation.initialization' | 'boardCreation.randomNumbers' | 'boardCreation.randomNumbers.first' | 'boardCreation.randomNumbers.second' | 'starting' | 'started' | 'started.fixed' | 'started.checkingMoves' | 'started.moving' | 'started.assigningScore' | 'started.assigningPossibleMoves' | 'started.nextMove' | 'started.randomNumber' | 'started.assignMoves' | 'gameOver' | {
+        boardCreation?: 'initialization' | 'randomNumbers' | {
+            randomNumbers?: 'first' | 'second';
+        };
+        started?: 'fixed' | 'checkingMoves' | 'moving' | 'assigningScore' | 'assigningPossibleMoves' | 'nextMove' | 'randomNumber' | 'assignMoves';
     };
     tags: never;
 }

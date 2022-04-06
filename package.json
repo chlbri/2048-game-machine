@@ -1,7 +1,7 @@
 {
-  "name": "gitpod-typescript",
-  "version": "0.0.1",
-  "description": "https://github.com/chlbri/2048-game-machine.git",
+  "name": "game_engine-2048",
+  "version": "0.0.2",
+  "description": "Game engine for 2048",
   "author": "chlbri <bri_lvi@icloud.com>",
   "license": "MIT",
   "main": "index.js",
