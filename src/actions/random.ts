@@ -4,7 +4,7 @@ import { Board } from '../context';
 import { TContext } from '../context/context';
 import { getEmptyPlaces } from './helpers/getEmptyPlaces';
 
-export function nextNumber() {
+function nextNumber() {
   const rand = Math.random();
   return rand < 0.7 ? 2 : 4;
 }

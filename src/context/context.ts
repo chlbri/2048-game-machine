@@ -1,6 +1,6 @@
-import { literal, number, object, union } from 'zod';
+import { number, object } from 'zod';
 import { boardSchema } from './board';
-import { BoardSide } from './boardSide';
+import { BoardSide, boardSideSchema } from './boardSide';
 import { inferF } from './types';
 
 export function contextSchema(boardSide: BoardSide) {
@@ -15,7 +15,7 @@ export function contextSchema(boardSide: BoardSide) {
       next: board.optional(),
     }).optional(),
 
-    boardSide: number(),
+    boardSide: boardSideSchema,
     moves: number(),
     statistics: object({}).optional(),
     score: number(),
