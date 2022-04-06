@@ -5,4 +5,4 @@ publish
 dist
 lib
 publish_npm
-**/.*typegen.ts
+**/*.typegen.ts
