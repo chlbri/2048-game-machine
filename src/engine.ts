@@ -121,10 +121,10 @@ export const engine = createMachine(
       started: {
         initial: 'assigningPossibleMoves',
         id: 'started',
+        entry: ['updateGame'],
         description: 'Vous pouvez jouer',
         states: {
           fixed: {
-            entry: ['updateGame'],
             exit: 'inc',
             on: {
               'MOVE.UP': {
@@ -190,6 +190,7 @@ export const engine = createMachine(
 
           nextMove: {
             exit: 'inc',
+            entry: ['updateGame'],
             always: [
               {
                 cond: 'canMoveAny',
