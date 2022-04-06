@@ -18,8 +18,5 @@ export function _moveDown(boardSide: BoardSide, board: Board): Board {
 }
 
 export const moveDownTemp = assign<TContext, never>(ctx => {
-  const next = _moveDown(ctx.boardSide, ctx.board);
-  (ctx._tempBoards as any).down = next;
-  (ctx._tempBoards as any).next = next;
-
+  ctx._tempBoards.next = ctx._tempBoards.down;
 });

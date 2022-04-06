@@ -1,19 +1,25 @@
-import { Board, TContext } from '../context';
+import { Board, boardSchema, BoardSide, TContext } from '../context';
 
-function _canMove(before: Board, after?: Board): boolean {
-  return !after || JSON.stringify(before) !== JSON.stringify(after);
+export function _canMove(
+  boardSide: BoardSide,
+  before: Board,
+  after: Board,
+): boolean {
+  return (
+    JSON.stringify(before) !==
+    JSON.stringify(boardSchema(boardSide).parse(after))
+  );
 }
+
 export function canMove(ctx: TContext): boolean {
-  const before = ctx.board;
-  const after = ctx._tempBoards?.next;
-  return _canMove(before, after);
+  return _canMove(ctx.boardSide, ctx.board, ctx._tempBoards.next);
 }
 
 export function canMoveAny(ctx: TContext): boolean {
-  const _func = (arg?: Board) => _canMove(ctx.board, arg);
-  const canMoveLeft = _func(ctx._tempBoards?.left);
-  const canMoveRight = _func(ctx._tempBoards?.right);
-  const canMoveUp = _func(ctx._tempBoards?.up);
-  const canMoveDown = _func(ctx._tempBoards?.down);
+  const _func = (arg: Board) => _canMove(ctx.boardSide, ctx.board, arg);
+  const canMoveLeft = _func(ctx._tempBoards.left);
+  const canMoveRight = _func(ctx._tempBoards.right);
+  const canMoveUp = _func(ctx._tempBoards.up);
+  const canMoveDown = _func(ctx._tempBoards.down);
   return canMoveLeft || canMoveRight || canMoveUp || canMoveDown;
 }

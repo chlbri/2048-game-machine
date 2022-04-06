@@ -8,5 +8,6 @@ export const assignPossibleMoves = assign<TContext, any>(ctx => {
     up: _moveUp(ctx.boardSide, ctx.board),
     left: _moveLeft(ctx.boardSide, ctx.board),
     right: _moveRight(ctx.boardSide, ctx.board),
+    next: [],
   };
 });

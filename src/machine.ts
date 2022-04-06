@@ -3,6 +3,7 @@ import {
   addMoves,
   addRandomNumber,
   assignPossibleMoves,
+  changeBoardSide,
   createBoard,
   inc,
   move,
@@ -10,179 +11,257 @@ import {
   moveLeftTemp,
   moveRightTemp,
   moveUpTemp,
+  score,
+  startGame,
+  stopGame,
+  updateGame,
 } from './actions';
-import { BoardSide, boardSideSchema, TContext } from './context';
+import { boardSideSchema, TContext } from './context';
 import { TEvent } from './events';
 import { canMove, canMoveAny } from './guards';
 
-export function gameMachine(value: BoardSide) {
-  const boardSide = boardSideSchema.parse(value);
-  return createMachine(
-    {
-      id: 'gameMachine',
-      context: {
-        board: [],
-        boardSide,
-        iterator: 0,
-        moves: 0,
-        score: 0,
+export const gameMachine = createMachine(
+  {
+    id: 'gameMachine',
+    context: {
+      board: [],
+      boardSide: boardSideSchema.parse(4),
+      iterator: 0,
+      moves: 0,
+      score: 0,
+      _tempBoards: {
+        down: [],
+        up: [],
+        left: [],
+        right: [],
+        next: [],
       },
-      initial: 'idle',
-      tsTypes: {} as import('./machine.typegen').Typegen0,
-      schema: {
-        context: {} as TContext,
-        events: {} as TEvent,
+    },
+
+    tsTypes: {} as import('./machine.typegen').Typegen0,
+    schema: {
+      context: {} as TContext,
+      events: {} as TEvent,
+    },
+
+    initial: 'idle',
+    states: {
+      idle: {
+        exit: 'inc',
+        description: 'État initial',
+        on: {
+          START: {
+            target: 'boardCreation',
+            description: 'Démarre la machine',
+          },
+          CHANGE_BOARDSIDE: {
+            actions: 'changeBoardSide',
+            description: 'Change la taille de la carte',
+          },
+        },
       },
-      states: {
-        idle: {
-          exit: 'inc',
-          on: {
-            START: {
-              actions: 'createBoard',
-              target: 'firstRandom',
-            },
-          },
-        },
-        firstRandom: {
-          entry: 'addRandomNumber',
-          exit: 'inc',
-          after: {
-            '50': {
-              target: 'secondRandom',
-            },
-          },
-        },
-        secondRandom: {
-          entry: 'addRandomNumber',
-          exit: 'inc',
-          after: {
-            '50': {
-              target: 'gameStarted',
-            },
-          },
-        },
-        gameStarted: {
-          initial: 'assigningPossibleMoves',
-          states: {
-            fixed: {
-              on: {
-                'MOVE.UP': {
-                  actions: 'moveUpTemp',
-                  target: 'checkingMoves',
-                },
-                'MOVE.DOWN': {
-                  actions: 'moveDownTemp',
-                  target: 'checkingMoves',
-                },
-                'MOVE.LEFT': {
-                  actions: 'moveLeftTemp',
-                  target: 'checkingMoves',
-                },
-                'MOVE.RIGHT': {
-                  actions: 'moveRightTemp',
-                  target: 'checkingMoves',
-                },
+
+      boardCreation: {
+        description: 'Création de la carte du jeu',
+        initial: 'initialization',
+        states: {
+          initialization: {
+            entry: 'createBoard',
+            exit: 'inc',
+            description: 'Initialisation de la carte',
+            after: {
+              '20': {
+                target: 'randomNumbers',
               },
             },
-            checkingMoves: {
-              exit: 'inc',
-              after: {
-                '50': [
-                  {
-                    actions: 'move',
-                    cond: 'canMove',
-                    target: 'moving',
+          },
+
+          randomNumbers: {
+            description: 'Ajout des 2 premiers nombres aléatoires',
+            initial: 'first',
+            states: {
+              first: {
+                entry: 'addRandomNumber',
+                description: 'Premier nombre',
+                exit: 'inc',
+                after: {
+                  '10': {
+                    target: 'second',
                   },
-                  {
-                    target: 'fixed',
+                },
+              },
+
+              second: {
+                entry: 'addRandomNumber',
+                exit: ['inc'],
+                description: 'Second nombre',
+                after: {
+                  '10': {
+                    target: '#starting',
                   },
-                ],
-              },
-            },
-            moving: {
-              exit: 'inc',
-              after: {
-                '10': {
-                  target: 'randomNumber',
                 },
               },
             },
-            assigningScore: {
-              entry: 'assignScore',
-              exit: 'inc',
-              after: {
-                '10': {
-                  target: 'assigningPossibleMoves',
-                },
+          },
+        },
+      },
+
+      starting: {
+        id: 'starting',
+        entry: 'startGame',
+        description: 'Démarrage du jeu',
+        exit: 'inc',
+        after: {
+          '50': {
+            target: '#started',
+          },
+        },
+      },
+
+      started: {
+        initial: 'assigningPossibleMoves',
+        id: 'started',
+        description: 'Vous pouvez jouer',
+        states: {
+          fixed: {
+            entry: ['updateGame'],
+            exit: 'inc',
+            on: {
+              'MOVE.UP': {
+                actions: 'moveUpTemp',
+                target: 'checkingMoves',
+              },
+              'MOVE.DOWN': {
+                actions: 'moveDownTemp',
+                target: 'checkingMoves',
+              },
+              'MOVE.LEFT': {
+                actions: 'moveLeftTemp',
+                target: 'checkingMoves',
+              },
+              'MOVE.RIGHT': {
+                actions: 'moveRightTemp',
+                target: 'checkingMoves',
               },
             },
-            assigningPossibleMoves: {
-              entry: 'assignPossibleMoves',
-              exit: 'inc',
-              always: [
+          },
+
+          checkingMoves: {
+            exit: 'inc',
+            after: {
+              '20': [
                 {
-                  cond: 'canMoveAny',
+                  actions: 'move',
+                  cond: 'canMove',
+                  target: 'moving',
+                },
+                {
                   target: 'fixed',
-                },
-                {
-                  target: '#gameOver',
                 },
               ],
             },
-            randomNumber: {
-              entry: 'addRandomNumber',
-              exit: 'inc',
-              after: {
-                '10': {
-                  target: 'assignMoves',
-                },
+          },
+
+          moving: {
+            exit: 'inc',
+            after: {
+              '10': {
+                target: 'randomNumber',
               },
             },
-            assignMoves: {
-              entry: 'addMoves',
-              exit: 'inc',
-              after: {
-                '10': {
-                  target: 'assigningScore',
-                },
+          },
+
+          assigningScore: {
+            entry: 'score',
+            exit: 'inc',
+            description: 'Beautifull formula',
+            after: {
+              '10': {
+                target: 'assigningPossibleMoves',
+              },
+            },
+          },
+
+          assigningPossibleMoves: {
+            entry: 'assignPossibleMoves',
+            exit: 'inc',
+            always: 'nextMove',
+          },
+
+          nextMove: {
+            exit: 'inc',
+            always: [
+              {
+                cond: 'canMoveAny',
+                target: 'fixed',
+              },
+              '#gameOver',
+            ],
+          },
+
+          randomNumber: {
+            entry: 'addRandomNumber',
+            exit: 'inc',
+            after: {
+              10: {
+                target: 'assignMoves',
+              },
+            },
+          },
+
+          assignMoves: {
+            entry: 'addMoves',
+            exit: 'inc',
+            after: {
+              '10': {
+                target: 'assigningScore',
               },
             },
           },
         },
-        gameOver: {
-          id: 'gameOver',
-          entry: 'stopGame',
-          exit: 'inc',
-          on: {
-            RINIT_GAME: {
-              target: 'firstRandom',
-            },
+      },
+
+      gameOver: {
+        id: 'gameOver',
+        entry: ['stopGame'],
+        exit: ['inc'],
+        description: 'Oh non ! Vous avez perdu',
+        on: {
+          START: {
+            target: 'boardCreation',
+            description: 'Réinitialise le jeu',
+          },
+          CHANGE_BOARDSIDE: {
+            actions: 'changeBoardSide',
           },
         },
       },
     },
-    {
-      actions: {
-        createBoard,
-        addRandomNumber,
-        assignPossibleMoves,
-        addMoves,
-        moveDownTemp,
-        moveUpTemp,
-        moveLeftTemp,
-        moveRightTemp,
-        move,
-        stopGame: () => {},
-        assignScore: () => {},
-        inc,
-      },
-      guards: {
-        canMoveAny,
-        canMove,
-      },
+  },
+  {
+    actions: {
+      createBoard,
+      addRandomNumber,
+      assignPossibleMoves,
+      addMoves,
+      moveDownTemp,
+      moveUpTemp,
+      moveLeftTemp,
+      moveRightTemp,
+      move,
+      stopGame,
+      startGame,
+      changeBoardSide,
+      score,
+      inc,
+      updateGame,
     },
-  );
-}
+    guards: {
+      canMoveAny,
+      canMove,
+    },
+  },
+);
 
 // tsTypes: {} as import('./machine.typegen').Typegen0,
 //   schema: {
