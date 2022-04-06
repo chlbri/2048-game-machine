@@ -172,8 +172,12 @@ export function gameMachine(value: BoardSide) {
         moveLeftTemp,
         moveRightTemp,
         move,
-        stopGame: () => {},
-        assignScore: () => {},
+        stopGame: () => {
+          // TODO stopGame
+        },
+        assignScore: () => {
+          // TODO assignScore
+        },
         inc,
       },
       guards: {
