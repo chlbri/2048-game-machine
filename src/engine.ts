@@ -135,6 +135,10 @@ export const engine = createMachine(
             description: 'Change la taille de la carte',
             target: 'boardCreation',
           },
+          RESTART: {
+            actions: ['inc', 'rinitScore', 'rinitMoves'],
+            target: 'boardCreation',
+          },
         },
         states: {
           fixed: {

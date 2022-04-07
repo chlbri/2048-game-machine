@@ -8,7 +8,13 @@ export type CHANGE_BOARDSIDE_EVENT = {
 
 export type TEvent =
   | {
-      type: 'START' | 'MOVE.UP' | 'MOVE.DOWN' | 'MOVE.LEFT' | 'MOVE.RIGHT';
+      type:
+        | 'START'
+        | 'MOVE.UP'
+        | 'MOVE.DOWN'
+        | 'MOVE.LEFT'
+        | 'MOVE.RIGHT'
+        | 'RESTART';
     }
   | CHANGE_BOARDSIDE_EVENT;
 

@@ -13,7 +13,7 @@ export declare const engine: import("xstate").StateMachine<{
         next: (number | undefined)[];
     };
 }, any, {
-    type: "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "START";
+    type: "START" | "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "RESTART";
 } | import("./events").CHANGE_BOARDSIDE_EVENT, {
     value: any;
     context: {
@@ -34,7 +34,7 @@ export declare const engine: import("xstate").StateMachine<{
 }, import("xstate").BaseActionObject, import("xstate").ServiceMap, import("./engine.typegen").Typegen0 & {
     indexedActions: import("xstate").IndexByType<import("xstate").BaseActionObject>;
     indexedEvents: import("xstate").IndexByType<{
-        type: "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "START";
+        type: "START" | "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "RESTART";
     } | import("./events").CHANGE_BOARDSIDE_EVENT> & Pick<{
         '': {
             type: "";
@@ -48,5 +48,5 @@ export declare const engine: import("xstate").StateMachine<{
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "" | "xstate.init" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.boardCreation.randomNumbers.second">;
+    }, "" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.boardCreation.randomNumbers.second" | "xstate.init">;
 }>;

@@ -2,9 +2,9 @@ export interface Typegen0 {
     '@@xstate/typegen': true;
     eventsCausingActions: {
         changeBoardSide: 'CHANGE_BOARDSIDE';
-        inc: 'CHANGE_BOARDSIDE';
-        rinitScore: 'CHANGE_BOARDSIDE';
-        rinitMoves: 'CHANGE_BOARDSIDE';
+        inc: 'CHANGE_BOARDSIDE' | 'RESTART';
+        rinitScore: 'CHANGE_BOARDSIDE' | 'RESTART';
+        rinitMoves: 'CHANGE_BOARDSIDE' | 'RESTART';
         moveUpTemp: 'MOVE.UP';
         moveDownTemp: 'MOVE.DOWN';
         moveLeftTemp: 'MOVE.LEFT';
