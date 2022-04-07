@@ -9,7 +9,7 @@ export declare const createBoard: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -24,7 +24,7 @@ export declare const addMoves: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -39,7 +39,7 @@ export declare const move: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -54,7 +54,7 @@ export declare const inc: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -69,7 +69,7 @@ export declare const score: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -84,7 +84,7 @@ export declare const stopGame: import("xstate").SendAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -99,7 +99,7 @@ export declare const startGame: import("xstate").SendAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -114,7 +114,7 @@ export declare const updateGame: import("xstate").SendAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -129,7 +129,7 @@ export declare const changeBoardSide: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;

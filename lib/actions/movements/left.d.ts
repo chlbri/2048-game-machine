@@ -10,7 +10,7 @@ export declare const moveLeftTemp: import("xstate").AssignAction<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;

@@ -21,7 +21,7 @@ export declare function contextSchema(boardSide: BoardSide): import("zod").ZodOb
         down: (number | undefined)[];
         next: (number | undefined)[];
     }>;
-    boardSide: import("zod").ZodNumber;
+    boardSide: import("zod").ZodUnion<[import("zod").ZodLiteral<4>, import("zod").ZodLiteral<5>, import("zod").ZodLiteral<6>]>;
     moves: import("zod").ZodNumber;
     statistics: import("zod").ZodOptional<import("zod").ZodObject<{}, "strip", import("zod").ZodTypeAny, {}, {}>>;
     score: import("zod").ZodNumber;
@@ -36,7 +36,7 @@ export declare function contextSchema(boardSide: BoardSide): import("zod").ZodOb
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
@@ -50,7 +50,7 @@ export declare function contextSchema(boardSide: BoardSide): import("zod").ZodOb
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
-    boardSide: number;
+    boardSide: 4 | 5 | 6;
     moves: number;
     score: number;
     iterator: number;
