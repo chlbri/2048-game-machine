@@ -13,12 +13,8 @@ export function _moveUp(boardSide: BoardSide, board: Board): Board {
     .map(moveCards)
     .map(cards => cards.reverse());
 
-  console.log('columns =>', columns);
-
   const rows = transpose2D(columns);
-  console.log('rows =>', rows);
   const _board = rowsToBoard(rows);
-  console.log('_board', board);
   return _board;
 }
 

@@ -1,10 +1,6 @@
 export declare const engine: import("xstate").StateMachine<{
     statistics?: {} | undefined;
-    iterator: number;
-    moves: number;
-    score: number;
     board: (number | undefined)[];
-    boardSide: 4 | 5 | 6;
     _tempBoards: {
         left: (number | undefined)[];
         right: (number | undefined)[];
@@ -12,17 +8,17 @@ export declare const engine: import("xstate").StateMachine<{
         down: (number | undefined)[];
         next: (number | undefined)[];
     };
+    boardSide: 4 | 5 | 6;
+    moves: number;
+    score: number;
+    iterator: number;
 }, any, {
     type: "START" | "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT";
 } | import("./events").CHANGE_BOARDSIDE_EVENT, {
     value: any;
     context: {
         statistics?: {} | undefined;
-        iterator: number;
-        moves: number;
-        score: number;
         board: (number | undefined)[];
-        boardSide: 4 | 5 | 6;
         _tempBoards: {
             left: (number | undefined)[];
             right: (number | undefined)[];
@@ -30,6 +26,10 @@ export declare const engine: import("xstate").StateMachine<{
             down: (number | undefined)[];
             next: (number | undefined)[];
         };
+        boardSide: 4 | 5 | 6;
+        moves: number;
+        score: number;
+        iterator: number;
     };
 }, import("xstate").BaseActionObject, import("xstate").ServiceMap, import("./engine.typegen").Typegen0 & {
     indexedActions: import("xstate").IndexByType<import("xstate").BaseActionObject>;
