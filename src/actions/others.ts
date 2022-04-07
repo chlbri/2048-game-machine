@@ -14,6 +14,14 @@ export const addMoves = assign<TContext, any>(ctx => {
   ctx.moves = ctx.moves + 1;
 });
 
+export const rinitScore = assign<TContext, any>(ctx => {
+  ctx.score = 0;
+});
+
+export const rinitMoves = assign<TContext, any>(ctx => {
+  ctx.moves = 0;
+});
+
 export const move = assign<TContext, any>(ctx => {
   ctx.board = boardSchema(ctx.boardSide).parse(ctx._tempBoards?.next);
 });

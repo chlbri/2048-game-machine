@@ -11,6 +11,8 @@ import {
   moveLeftTemp,
   moveRightTemp,
   moveUpTemp,
+  rinitMoves,
+  rinitScore,
   score,
   startGame,
   stopGame,
@@ -124,7 +126,12 @@ export const engine = createMachine(
         description: 'Vous pouvez jouer',
         on: {
           CHANGE_BOARDSIDE: {
-            actions: 'changeBoardSide',
+            actions: [
+              'inc',
+              'rinitScore',
+              'rinitMoves',
+              'changeBoardSide',
+            ],
             description: 'Change la taille de la carte',
             target: 'boardCreation',
           },
@@ -231,7 +238,7 @@ export const engine = createMachine(
       gameOver: {
         id: 'gameOver',
         entry: ['stopGame'],
-        exit: ['inc'],
+        exit: ['inc', 'rinitScore', 'rinitMoves'],
         description: 'Oh non ! Vous avez perdu',
         on: {
           START: {
@@ -262,6 +269,8 @@ export const engine = createMachine(
       score,
       inc,
       updateGame,
+      rinitMoves,
+      rinitScore,
     },
     guards: {
       canMoveAny,

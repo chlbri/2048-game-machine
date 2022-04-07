@@ -2,12 +2,14 @@ export interface Typegen0 {
     '@@xstate/typegen': true;
     eventsCausingActions: {
         changeBoardSide: 'CHANGE_BOARDSIDE';
+        inc: 'CHANGE_BOARDSIDE';
+        rinitScore: 'CHANGE_BOARDSIDE';
+        rinitMoves: 'CHANGE_BOARDSIDE';
         moveUpTemp: 'MOVE.UP';
         moveDownTemp: 'MOVE.DOWN';
         moveLeftTemp: 'MOVE.LEFT';
         moveRightTemp: 'MOVE.RIGHT';
         move: 'xstate.after(20)#engine.started.checkingMoves';
-        inc: 'xstate.init';
         createBoard: 'xstate.init';
         addRandomNumber: 'xstate.after(10)#engine.boardCreation.randomNumbers.first' | 'xstate.after(10)#engine.started.moving';
         startGame: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';

@@ -29,6 +29,36 @@ export declare const addMoves: import("xstate").AssignAction<{
     score: number;
     iterator: number;
 }, any>;
+export declare const rinitScore: import("xstate").AssignAction<{
+    statistics?: {} | undefined;
+    board: (number | undefined)[];
+    _tempBoards: {
+        left: (number | undefined)[];
+        right: (number | undefined)[];
+        up: (number | undefined)[];
+        down: (number | undefined)[];
+        next: (number | undefined)[];
+    };
+    boardSide: 4 | 5 | 6;
+    moves: number;
+    score: number;
+    iterator: number;
+}, any>;
+export declare const rinitMoves: import("xstate").AssignAction<{
+    statistics?: {} | undefined;
+    board: (number | undefined)[];
+    _tempBoards: {
+        left: (number | undefined)[];
+        right: (number | undefined)[];
+        up: (number | undefined)[];
+        down: (number | undefined)[];
+        next: (number | undefined)[];
+    };
+    boardSide: 4 | 5 | 6;
+    moves: number;
+    score: number;
+    iterator: number;
+}, any>;
 export declare const move: import("xstate").AssignAction<{
     statistics?: {} | undefined;
     board: (number | undefined)[];
