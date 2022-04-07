@@ -63,5 +63,5 @@ export declare const engine: import("xstate").StateMachine<{
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "" | "xstate.after(20)#engine.started.checkingMoves" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.started.moving" | "xstate.after(10)#engine.boardCreation.randomNumbers.second" | "xstate.after(10)#engine.started.assignMoves" | "xstate.after(10)#engine.started.randomNumber" | "xstate.after(10)#engine.started.assigningScore" | "xstate.init">;
+    }, "" | "xstate.after(20)#engine.started.checkingMoves" | "xstate.init" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.started.moving" | "xstate.after(10)#engine.boardCreation.randomNumbers.second" | "xstate.after(10)#engine.started.assignMoves" | "xstate.after(10)#engine.started.assigningScore" | "xstate.after(10)#engine.started.randomNumber">;
 }>;
