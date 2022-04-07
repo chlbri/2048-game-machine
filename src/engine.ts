@@ -210,7 +210,7 @@ export const engine = createMachine(
             entry: 'addRandomNumber',
             exit: 'inc',
             after: {
-              10: {
+              '10': {
                 target: 'assignMoves',
               },
             },
