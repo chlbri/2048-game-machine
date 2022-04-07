@@ -15,9 +15,9 @@ export interface Typegen0 {
       | 'xstate.after(10)#engine.boardCreation.randomNumbers.first'
       | 'xstate.after(10)#engine.started.moving';
     startGame: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';
-    score: 'xstate.after(10)#engine.started.assignMoves';
-    assignPossibleMoves: 'xstate.after(10)#engine.started.assigningScore';
-    updateGame: '';
+    score: '';
+    assignPossibleMoves: 'xstate.after(10)#engine.started.assignMoves';
+    updateGame: 'xstate.after(10)#engine.started.assigningScore';
     addMoves: 'xstate.after(10)#engine.started.randomNumber';
     stopGame: '';
   };
@@ -34,16 +34,16 @@ export interface Typegen0 {
     'xstate.after(10)#engine.boardCreation.randomNumbers.second': {
       type: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';
     };
-    'xstate.after(10)#engine.started.assignMoves': {
-      type: 'xstate.after(10)#engine.started.assignMoves';
-    };
+    '': { type: '' };
     'xstate.after(10)#engine.started.randomNumber': {
       type: 'xstate.after(10)#engine.started.randomNumber';
+    };
+    'xstate.after(10)#engine.started.assignMoves': {
+      type: 'xstate.after(10)#engine.started.assignMoves';
     };
     'xstate.after(10)#engine.started.assigningScore': {
       type: 'xstate.after(10)#engine.started.assigningScore';
     };
-    '': { type: '' };
     'xstate.init': { type: 'xstate.init' };
   };
   invokeSrcNameMap: {};

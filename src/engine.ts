@@ -183,7 +183,7 @@ export const engine = createMachine(
             description: 'Beautifull formula',
             after: {
               '10': {
-                target: 'assigningPossibleMoves',
+                target: 'nextMove',
               },
             },
           },
@@ -191,7 +191,7 @@ export const engine = createMachine(
           assigningPossibleMoves: {
             entry: 'assignPossibleMoves',
             exit: 'inc',
-            always: 'nextMove',
+            always: 'assigningScore',
           },
 
           nextMove: {
@@ -221,7 +221,7 @@ export const engine = createMachine(
             exit: 'inc',
             after: {
               '10': {
-                target: 'assigningScore',
+                target: 'assigningPossibleMoves',
               },
             },
           },
