@@ -25,7 +25,7 @@ export const inc = assign<TContext, any>(ctx => {
 export const score = assign<TContext, any>(ctx => {
   const boardScore = ctx.board
     .map(val => val ?? 0)
-    .reduce((acc, curr) => (acc += curr));
+    .reduce((acc, curr) => (acc += curr), 0);
 
   ctx.score = boardScore + Math.round(Math.sqrt(ctx.moves * boardScore));
 });
