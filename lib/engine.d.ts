@@ -13,7 +13,7 @@ export declare const engine: import("xstate").StateMachine<{
         next: (number | undefined)[];
     };
 }, any, {
-    type: "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "START";
+    type: "START" | "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT";
 } | import("./events").CHANGE_BOARDSIDE_EVENT, {
     value: any;
     context: {
@@ -34,7 +34,7 @@ export declare const engine: import("xstate").StateMachine<{
 }, import("xstate").BaseActionObject, import("xstate").ServiceMap, import("./engine.typegen").Typegen0 & {
     indexedActions: import("xstate").IndexByType<import("xstate").BaseActionObject>;
     indexedEvents: import("xstate").IndexByType<{
-        type: "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT" | "START";
+        type: "START" | "MOVE.UP" | "MOVE.DOWN" | "MOVE.LEFT" | "MOVE.RIGHT";
     } | import("./events").CHANGE_BOARDSIDE_EVENT> & Pick<{
         'xstate.after(20)#engine.started.checkingMoves': {
             type: "xstate.after(20)#engine.started.checkingMoves";
@@ -63,5 +63,5 @@ export declare const engine: import("xstate").StateMachine<{
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "" | "xstate.after(20)#engine.started.checkingMoves" | "xstate.init" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.started.moving" | "xstate.after(10)#engine.boardCreation.randomNumbers.second" | "xstate.after(10)#engine.started.assignMoves" | "xstate.after(10)#engine.started.assigningScore" | "xstate.after(10)#engine.started.randomNumber">;
+    }, "" | "xstate.after(20)#engine.started.checkingMoves" | "xstate.after(10)#engine.boardCreation.randomNumbers.first" | "xstate.after(10)#engine.started.moving" | "xstate.after(10)#engine.boardCreation.randomNumbers.second" | "xstate.after(10)#engine.started.assignMoves" | "xstate.after(10)#engine.started.randomNumber" | "xstate.after(10)#engine.started.assigningScore" | "xstate.init">;
 }>;

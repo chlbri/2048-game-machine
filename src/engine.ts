@@ -122,6 +122,13 @@ export const engine = createMachine(
         initial: 'assigningPossibleMoves',
         id: 'started',
         description: 'Vous pouvez jouer',
+        on: {
+          CHANGE_BOARDSIDE: {
+            actions: 'changeBoardSide',
+            description: 'Change la taille de la carte',
+            target: 'boardCreation',
+          },
+        },
         states: {
           fixed: {
             exit: 'inc',
