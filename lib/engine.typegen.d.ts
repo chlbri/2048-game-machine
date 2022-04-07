@@ -9,40 +9,25 @@ export interface Typegen0 {
         moveDownTemp: 'MOVE.DOWN';
         moveLeftTemp: 'MOVE.LEFT';
         moveRightTemp: 'MOVE.RIGHT';
-        move: 'xstate.after(20)#engine.started.checkingMoves';
+        move: '';
         createBoard: 'xstate.init';
-        addRandomNumber: 'xstate.after(10)#engine.boardCreation.randomNumbers.first' | 'xstate.after(10)#engine.started.moving';
+        addRandomNumber: 'xstate.after(10)#engine.boardCreation.randomNumbers.first' | '';
         startGame: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';
         score: '';
-        assignPossibleMoves: 'xstate.after(10)#engine.started.assignMoves';
-        updateGame: 'xstate.after(10)#engine.started.assigningScore';
-        addMoves: 'xstate.after(10)#engine.started.randomNumber';
+        assignPossibleMoves: '';
+        updateGame: '';
+        addMoves: '';
         stopGame: '';
     };
     internalEvents: {
-        'xstate.after(20)#engine.started.checkingMoves': {
-            type: 'xstate.after(20)#engine.started.checkingMoves';
+        '': {
+            type: '';
         };
         'xstate.after(10)#engine.boardCreation.randomNumbers.first': {
             type: 'xstate.after(10)#engine.boardCreation.randomNumbers.first';
         };
-        'xstate.after(10)#engine.started.moving': {
-            type: 'xstate.after(10)#engine.started.moving';
-        };
         'xstate.after(10)#engine.boardCreation.randomNumbers.second': {
             type: 'xstate.after(10)#engine.boardCreation.randomNumbers.second';
-        };
-        '': {
-            type: '';
-        };
-        'xstate.after(10)#engine.started.randomNumber': {
-            type: 'xstate.after(10)#engine.started.randomNumber';
-        };
-        'xstate.after(10)#engine.started.assignMoves': {
-            type: 'xstate.after(10)#engine.started.assignMoves';
-        };
-        'xstate.after(10)#engine.started.assigningScore': {
-            type: 'xstate.after(10)#engine.started.assigningScore';
         };
         'xstate.init': {
             type: 'xstate.init';
@@ -57,7 +42,7 @@ export interface Typegen0 {
     };
     eventsCausingServices: {};
     eventsCausingGuards: {
-        canMove: 'xstate.after(20)#engine.started.checkingMoves';
+        canMove: '';
         canMoveAny: '';
     };
     eventsCausingDelays: {};

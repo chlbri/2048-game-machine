@@ -1,6 +1,6 @@
 {
   "name": "game_engine",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Game engine for 2048",
   "author": "chlbri <bri_lvi@icloud.com>",
   "license": "MIT",

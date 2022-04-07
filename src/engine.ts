@@ -161,38 +161,28 @@ export const engine = createMachine(
 
           checkingMoves: {
             exit: 'inc',
-            after: {
-              '20': [
-                {
-                  actions: 'move',
-                  cond: 'canMove',
-                  target: 'moving',
-                },
-                {
-                  target: 'fixed',
-                },
-              ],
-            },
+            always: [
+              {
+                actions: 'move',
+                cond: 'canMove',
+                target: 'moving',
+              },
+              {
+                target: 'fixed',
+              },
+            ],
           },
 
           moving: {
             exit: 'inc',
-            after: {
-              '10': {
-                target: 'randomNumber',
-              },
-            },
+            always: 'randomNumber',
           },
 
           assigningScore: {
             entry: 'score',
             exit: 'inc',
             description: 'Beautifull formula',
-            after: {
-              '10': {
-                target: 'nextMove',
-              },
-            },
+            always: 'nextMove',
           },
 
           assigningPossibleMoves: {
@@ -216,21 +206,13 @@ export const engine = createMachine(
           randomNumber: {
             entry: 'addRandomNumber',
             exit: 'inc',
-            after: {
-              '10': {
-                target: 'assignMoves',
-              },
-            },
+            always: 'assignMoves',
           },
 
           assignMoves: {
             entry: 'addMoves',
             exit: 'inc',
-            after: {
-              '10': {
-                target: 'assigningPossibleMoves',
-              },
-            },
+            always: 'assigningPossibleMoves',
           },
         },
       },
